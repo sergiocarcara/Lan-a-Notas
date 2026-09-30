@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Pagina Administrativa {% endblock %}
+
+ {% block navbar %}
+    {% include 'include/navbar_home.html' %}
+ {% endblock %}
+
+{% block conteudo %}
+
+<div class="card mt-4 mb-5">
+    <div class="card-body">
+        <h3 class="card-title">Edição da Nota Selecionada</h3>
+        <p class="lead">Verifique as informações cadastradas e faça as devidas alterações.</p>
+        <hr>
+        <form action="{% url 'editar' lista_notas.pk %}" method="POST">
+            {% csrf_token %} 
+            <div class="mb-3">
+                <label class="form-label">Nome:</label>
+                <input type="text" class="form-control text-uppercase" value="{{ user.first_name }}" readonly>
+            </div>           
+            <div class="mb-3">
+                <label for="disciplinaName" class="form-label">Disciplina:</label>
+                <input type="text" id="disciplinaName" name="disciplina" class="form-control text-uppercase"
+                 value="{{ lista_notas.disciplina }}">
+            </div>
+            <div class="mb-3">
+                <label for="notaAtividades" class="form-label">Nota das atividades:</label>
+                <input type="text" id="notaAtividades" name="nota_atividade" class="form-control"
+                value="{{ lista_notas.nota_atividade }}">
+            </div>
+            <div class="mb-3">
+                <label for="notaTrabalho" class="form-label">Nota do Trabalho:</label>
+                <input type="text" id="notaTrabalho" name="nota_trabalho" class="form-control"
+                value="{{ lista_notas.nota_trabalho }}">
+            </div>
+            <div class="mb-3">
+                <label for="notaProva" class="form-label">Nota da Prova:</label>
+                <input type="text" id="notaProva" name="nota_prova" class="form-control"
+                value="{{ lista_notas.nota_prova }}">
+            </div>
+            <button type="submit" class="btn btn-success">Atualizar</button>
+            <a href="{% url 'alterar' %}" class="btn btn-secondary">Voltar</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

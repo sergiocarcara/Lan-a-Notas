@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Pagina Administrativa {% endblock %}
+
+ {% block navbar %}
+    {% include 'include/navbar_home.html' %}
+ {% endblock %}
+
+{% block conteudo %}
+
+<div class="card text-white my-5 py-4" style="background-color: #da3636e7;">
+    <div class="card-body">
+        <h2 class="card-title">Exclusão da Nota Selecionada</h2>
+       
+    </div>
+</div>
+
+<h4><p>Tem certeza que deseja excluir as notas da disciplina <strong>{{ lista_notas.disciplina }}</strong>?</p></h4>
+<hr>
+<div class="delete">
+<a href="{% url 'excluir' lista_notas.pk %}" class="btn btn-success btn-sm">Sim</a>
+<a href="{% url 'alterar' %}" class="btn btn-danger btn-sm">Não</a>
+</div>
+
+{% endblock %}

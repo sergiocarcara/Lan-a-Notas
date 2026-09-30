@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Login | Nota{% endblock %}
+
+ {% block navbar %}
+    {% include 'include/navbar_login.html' %}
+ {% endblock %}
+
+{% block conteudo %}
+
+<form  action="login/" method="post"> 
+    {% csrf_token %}          
+    <div class="row justify-content-center">        
+        
+        <div class="col-4"><br><br><br>
+
+            {% for message in messages %}             
+                <div class="alert alert-{{ message.tags}}"  id="mensagem-alerta">
+                    <strong>{{ message }}</strong> 
+                </div>   
+            {% endfor %} 
+
+             <h2 class="card-title text-center">Login Usuário</h2>          
+            <div class="mb-3 mt-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Entre email" name="email">
+            </div>
+
+            <div class="mb-3">
+                <label for="pwd" class="form-label">Senha:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Entre senha" name="senha">
+            </div>
+
+            <div class="mb-3">
+                <label>
+                <a href="#" style="text-decoration: none; color: black;" data-bs-toggle="modal" data-bs-target="#myModal">Cadastrar</a>
+                </label>
+            </div>
+            <div class="d-grid gap-3">
+                <button type="submit" class="btn btn-success">Entra</button> 
+            </div>
+        </div>
+    </div>  
+</form>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Cadastrar Usuário</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+                <!-- Modal body -->
+            <form  action="usuario/" method="post"> 
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="mb-3 mt-3">
+                        <label for="nome" class="form-label">Nome completo:</label>
+                        <input type="text" class="form-control" id="name" placeholder="nome" name="nome">
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" placeholder="email" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="pwd" class="form-label">Senha:</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="senha" name="senha">
+                    </div>                
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Cadastrar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+    {% include 'include/temporizadorJS.html' %}
+ {% endblock %}

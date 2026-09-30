@@ -1,0 +1,66 @@
+{% extends 'base.html'%}
+
+{% block titulo %}Visualizar - Notas {% endblock %} 
+
+{% block navbar %}
+    {% include 'include/navbar_home.html' %}
+ {% endblock %}
+
+{% block conteudo %}
+
+<div class="card mt-4 mb-5">
+    <div class="card-body">
+        <h3 class="card-title">Altera Notas</h3>        
+        <hr>        
+    </div>
+    <div class="card-body">
+        <table class="table table-striped table-hover shadow rounded">
+            <thead class="bg-success text-white">
+                <tr>
+                    <th>Aluno</th>
+                    <th>Disciplina</th>
+                    <th>Nota das Atividades</th>
+                    <th>Nota do Trabalho</th>
+                    <th>Nota da Prova</th>
+                    <th>Média</th>
+                    <th>Ação</th>
+
+                </tr>
+            </thead>
+            {% for campo in lista_notas %}
+            <tr>                    
+                <td>{{ campo.nome_aluno }}</td>
+                <td>{{ campo.disciplina }}</td>
+                <td>{{ campo.nota_atividade}}</td>
+                <td>{{ campo.nota_trabalho }}</td>
+                <td>{{ campo.nota_prova }}</td>
+                <td>{{ campo.media }}</td>
+                <td>
+                    <a href="{% url 'editar_verificacao' campo.pk %}" class="btn btn-primary btn-sm" >Editar</a>
+                    <a href="{% url 'excluir_verificacao' campo.pk %}" class="btn btn-danger btn-sm">Excluir</a>         
+                </td>
+                {% empty %}
+                <td colspan="7">
+                    <div class="alert alert-warning" role="alert">
+                        Atenção! Nenhu resultado encontardo.
+                    </div> 
+                </td>                                 
+            </tr>
+            {% endfor %} 
+            
+        </table> 
+
+        <!--Mensagem na pagina com temporizador-->
+        {% for message in messages %}             
+            <div class="alert alert-{{ message.tags}}"  id="mensagem-alerta">
+                <strong>{{ message }}</strong> 
+            </div>   
+        {% endfor %}  
+        
+    </div>   
+</div>
+{% endblock %}
+
+{% block js %}
+    {% include 'include/temporizadorJS.html' %}
+{% endblock %}

@@ -1,0 +1,22 @@
+<script>
+    // Executa o código assim que a página carregar por completo
+    window.addEventListener('DOMContentLoaded', (event) => {
+        // Procura pelo elemento que contém as mensagens
+        const alerta = document.getElementById('mensagem-alerta');
+        
+        if (alerta) {
+            // Define um tempo de 3000ms (3 segundos) antes de sumir
+            setTimeout(() => {
+                // Adiciona um efeito de transição suave (fade)
+                alerta.style.transition = "opacity 0.5s ease";
+                alerta.style.opacity = "0";
+                
+                // Remove o elemento do HTML após o efeito de fade terminar
+                setTimeout(() => {
+                    alerta.remove();
+                }, 500); 
+                
+            }, 3000); // Altere aqui o tempo se quiser que dure mais ou menos
+        }
+    });
+</script>

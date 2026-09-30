@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Pagina Administrativa {% endblock %}
+
+ {% block navbar %}
+    {% include 'include/navbar_home.html' %}
+ {% endblock %}
+
+{% block conteudo %}
+<div class="card text-white my-5 py-4" style="background-color: #006400;">
+    <div class="card-body">
+        <h2 class="card-title">Bem-vindo (a) ao portal de notas</h2>
+        <p class="text-white m-0">aqui você encontrará as opções para lançar, alterar e visualizar as notas das disciplina.</p>
+    </div>
+</div>
+<!-- Content Row-->
+{% for message in messages %}             
+    <div class="alert alert-{{ message.tags}}"  id="mensagem-alerta">
+        <strong>{{ message }}</strong> 
+    </div>   
+{% endfor %}    
+
+<div class="row gx-4 gx-lg-5">  
+    <!--Card Lançar notas -->
+    <div class="col-md-4 mb-5">
+        <div class="card h-100" style="background-color: #D3D3D3;">
+            <div class="card-body" style="background-color: #FFFFFF;">
+                <h2 class="card-title">Lançar Notas</h2>
+                <p class="card-text">
+                    Nesta opção você poderá lançar
+                    todas as notas referentes às suas
+                    desciplinas, discriminando os d
+                    etalhes dos respectivos alunos.
+                </p>
+            </div>
+            <div class="card-footer"><a class="btn btn-sm text-white" style="background-color: #008000;" href="/lancar/">Clique aqui</a></div>
+        </div>      
+    </div>
+
+    <!--Card Auterar notas -->
+    <div class="col-md-4 mb-5">
+        <div class="card h-100" style="background-color: #D3D3D3;">
+            <div class="card-body" style="background-color: #FFFFFF;">
+                <h2 class="card-title">Alterar Notas</h2>
+                <p class="card-text">
+                    Nesta opção você poderá alterar
+                    todas as notas já lançadas, inclusive
+                    excluir algumas notas quando
+                    necessário.
+                </p>
+            </div>
+            <div class="card-footer"><a class="btn btn-sm text-white" style="background-color: #008000;" href="/alterar/">Clique aqui</a></div>
+        </div>
+    </div>
+
+    <!--Card Visualizar notas -->
+    <div class="col-md-4 mb-5">
+        <div class="card h-100" style="background-color: #D3D3D3;">
+            <div class="card-body" style="background-color: #FFFFFF;">
+                <h2 class="card-title">Visualizar Notas</h2>
+                <p class="card-text">
+                    Nesta opção você poderá visualizar
+                    todas as notas já lançadas referentea
+                    as suas disciplinas.
+                </p>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-sm text-white" style="background-color: #008000;" href="{% url 'visualizar' %}">Clique aqui</a>
+            </div>
+           
+        </div>       
+    </div> 
+     
+</div>
+{% endblock %}
+{% block js %}
+    {% include 'include/temporizadorJS.html' %}
+ {% endblock %}
